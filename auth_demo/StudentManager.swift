@@ -39,8 +39,9 @@ class StudentManager: ObservableObject {
                     
                     let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
+                    let pencils = data["pencils"] as? [String] ?? ["black"]
                     
-                    let student = Student(id: id,name: name, dID: dID)
+                    let student = Student(id: id,name: name, dID: dID, pencils: pencils)
                     
                     self.students.append(student)
                 }
@@ -72,6 +73,24 @@ class StudentManager: ObservableObject {
         fetechStudents()
     }
     
+    
+    func otherEditStudent(id:String,pencils:[String]){ //Update
+        let db = Firestore.firestore()
+        let ref = db.collection("Student").document(id)
+        
+        do{
+            ref.updateData(["pencils":pencils]) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }catch{
+            
+        }
+        
+        fetechStudents()
+    }
+    
     func removeStudent(id:String){ //Delete
         let db = Firestore.firestore()
         db.collection("Student").document(id).delete()
@@ -98,9 +117,10 @@ class StudentManager: ObservableObject {
                     let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
                     let dID = data["dID"] as? String ?? ""
+                    let pencils = data["pencils"] as? [String] ?? ["black"]
 
                     
-                    let student = Student(id: id,name: name, dID: dID)
+                    let student = Student(id: id,name: name, dID: dID, pencils: pencils)
                     
                     self.students.append(student)
                 }

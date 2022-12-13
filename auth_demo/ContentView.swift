@@ -38,20 +38,28 @@ struct ContentView: View {
 
                 }.padding(.horizontal, 20)
                 NavigationView{
-                    List(studentManager.students, id: \.id){ std in
-                        HStack {
-                            VStack {
-                                Text(std.id)
-                                Text(std.name)
-                                Text(std.dID)
-                            }
-                            Button {
-                                studentManager.removeStudent(id: std.dID)
-                            } label: {
-                                Text("Delete")
-                            }
+                    List{
+                        ForEach(studentManager.students){ std in
+                            HStack {
+                                VStack(alignment:.center) {
+                                    Text(std.id)
+                                    Text(std.name)
+                                    Text(std.dID)
+                                    Text(std.pencils[0])
+                                }
+                                Button {
+                                    var pens = std.pencils
+                                    pens[0] = "blue"
+                                    studentManager.otherEditStudent(id: std.dID, pencils: pens)
+                                } label: {
+                                    Text("編輯")
+                                }
 
+                            }
+                        }.onDelete { index in
+                            studentManager.removeStudent(id: studentManager.students[index.first ?? 0].dID)
                         }
+                        
                     }
                     .navigationTitle("Students")
                     .navigationBarItems(trailing: Button(action: {
