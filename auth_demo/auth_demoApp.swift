@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
-import Firebase
 
 @main
 struct auth_demoApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var studentManager = StudentManager()
     
     init(){
-        FirebaseApp.configure()
+        
     }
     
     var body: some Scene {

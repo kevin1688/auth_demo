@@ -24,6 +24,8 @@ struct ContentView: View {
     
     @State var searchName = ""
     
+    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         if statusIsLogin {
             
@@ -32,11 +34,35 @@ struct ContentView: View {
                     TextField("輸入尋找名字", text: $searchName)
                     Button {
                         studentManager.findStudent(name: searchName)
+                        
                     } label: {
                         Text("尋找")
                     }
 
                 }.padding(.horizontal, 20)
+                
+                List{
+                    ForEach(0..<studentManager.students.count, id:\.self){ index in
+                        HStack {
+                            VStack(alignment:.center) {
+                                Text(studentManager.students[index].id)
+                                Text(studentManager.students[index].name)
+                                Text(studentManager.students[index].dID)
+                                Text(studentManager.students[index].pencils[0])
+                            }
+                            Button {
+                                var pens = studentManager.students[index].pencils
+                                pens[0] = "black"
+                                studentManager.otherEditStudent(id: studentManager.students[index].dID, pencils: pens)
+                                self.time.upstream.connect().cancel()
+                                
+                            } label: {
+                                Text("編輯")
+                            }
+
+                        }
+                    }
+                }
                 NavigationView{
                     List{
                         ForEach(studentManager.students){ std in
@@ -49,7 +75,7 @@ struct ContentView: View {
                                 }
                                 Button {
                                     var pens = std.pencils
-                                    pens[0] = "blue"
+                                    pens[0] = "black"
                                     studentManager.otherEditStudent(id: std.dID, pencils: pens)
                                 } label: {
                                     Text("編輯")
@@ -58,6 +84,8 @@ struct ContentView: View {
                             }
                         }.onDelete { index in
                             studentManager.removeStudent(id: studentManager.students[index.first ?? 0].dID)
+                        }.onSubmit {
+                            
                         }
                         
                     }

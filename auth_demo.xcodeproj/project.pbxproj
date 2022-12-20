@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661279E62949A100002EB0EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661279E52949A100002EB0EB /* AppDelegate.swift */; };
 		66235428292CF7AC00DE1609 /* NewStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66235427292CF7AC00DE1609 /* NewStudent.swift */; };
 		6654DE562923BA990000797B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6654DE552923BA990000797B /* Student.swift */; };
 		6654DE582923BB670000797B /* StudentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6654DE572923BB670000797B /* StudentManager.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		661279E52949A100002EB0EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66235427292CF7AC00DE1609 /* NewStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStudent.swift; sourceTree = "<group>"; };
 		6654DE552923BA990000797B /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		6654DE572923BB670000797B /* StudentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentManager.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				6654DE552923BA990000797B /* Student.swift */,
 				6654DE572923BB670000797B /* StudentManager.swift */,
 				66235427292CF7AC00DE1609 /* NewStudent.swift */,
+				661279E52949A100002EB0EB /* AppDelegate.swift */,
 			);
 			path = auth_demo;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661279E62949A100002EB0EB /* AppDelegate.swift in Sources */,
 				66C4B2122911597000E3E342 /* ContentView.swift in Sources */,
 				6654DE582923BB670000797B /* StudentManager.swift in Sources */,
 				6654DE562923BA990000797B /* Student.swift in Sources */,

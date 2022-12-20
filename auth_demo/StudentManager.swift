@@ -85,7 +85,7 @@ class StudentManager: ObservableObject {
                 }
             }
         }catch{
-            
+            print("")
         }
         
         fetechStudents()

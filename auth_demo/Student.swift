@@ -7,10 +7,16 @@
 
 import SwiftUI
 
-struct Student: Identifiable,Encodable{
+struct Student:Identifiable,Codable{
     
     var id:String
     var name:String
     var dID:String
     var pencils:[String]
+    var des:[detail]
+}
+
+struct detail:Codable{
+    var name:String
+    var number:Int
 }
