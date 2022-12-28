@@ -13,10 +13,4 @@ struct Student:Identifiable,Codable{
     var name:String
     var dID:String
     var pencils:[String]
-    var des:[detail]
-}
-
-struct detail:Codable{
-    var name:String
-    var number:Int
 }

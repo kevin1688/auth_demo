@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import PhotosUI
 
 struct ContentView: View {
     @EnvironmentObject var studentManager:StudentManager
@@ -24,45 +25,79 @@ struct ContentView: View {
     
     @State var searchName = ""
     
-    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedPhotoData:Data?
+    
+    @State var showImg = false
     
     var body: some View {
+        
         if statusIsLogin {
             
             VStack {
                 HStack{
-                    TextField("輸入尋找名字", text: $searchName)
-                    Button {
-                        studentManager.findStudent(name: searchName)
+                    TextField("輸入尋找名字", text: $searchName).onChange(of: searchName) { newValue in
+                        if newValue != "" {
+                            searchName = newValue
+                            studentManager.findStudent(name: searchName)}else{
+                                studentManager.fetechStudents()
+                            }
+                    }
+                    PhotosPicker(selection: $selectedItem, matching: .images) {
+                        Label("選擇相片", systemImage: "photo")
+                    }.onChange(of: selectedItem) { newValue in
+                        Task{
+                            if let data = try? await newValue?.loadTransferable(type: Data.self){
+                                selectedPhotoData = data
+                                showImg = true
+                                await studentManager.upload(image: UIImage(data: data)!,name: "pictureName\(Date.now.description)")
+                            }
+                        }
                         
-                    } label: {
-                        Text("尋找")
                     }
 
                 }.padding(.horizontal, 20)
                 
-                List{
-                    ForEach(0..<studentManager.students.count, id:\.self){ index in
-                        HStack {
-                            VStack(alignment:.center) {
-                                Text(studentManager.students[index].id)
-                                Text(studentManager.students[index].name)
-                                Text(studentManager.students[index].dID)
-                                Text(studentManager.students[index].pencils[0])
-                            }
+                if var selectedPhotoData,
+                   let image = UIImage(data: selectedPhotoData){
+                    if showImg {
+                        VStack{
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                            .clipped()
                             Button {
-                                var pens = studentManager.students[index].pencils
-                                pens[0] = "black"
-                                studentManager.otherEditStudent(id: studentManager.students[index].dID, pencils: pens)
-                                self.time.upstream.connect().cancel()
-                                
+                                showImg = false
+                                studentManager.listAllFiles()
                             } label: {
-                                Text("編輯")
+                                Text("確定")
                             }
 
                         }
                     }
                 }
+                NavigationView {
+                    List{
+                        ForEach(studentManager.myPics,id:\.self){ pic in
+                            HStack {
+                                //註解為第二種方式
+                                /*AsyncImage(url: URL(string: pic)!, placeholder: {Text("載入中.....")}, image:{Image(uiImage: $0).resizable()}).frame(width: 100, height: 100)*/
+                                ImageView(withURL: pic)
+                                Button {
+                                    studentManager.deleteItem(url: pic)
+                                    
+                                } label: {
+                                    Text("刪除")
+                                }
+
+                            }
+                        }
+                    }
+                }.onAppear{
+                    studentManager.listAllFiles()
+                }
+                Text("\(studentManager.myPics.count)")
+                /*
                 NavigationView{
                     List{
                         ForEach(studentManager.students){ std in
@@ -99,6 +134,7 @@ struct ContentView: View {
                         NewStudent(showPopup: $showPopup)
                     }
                 }
+                */
             }
         }else{
             VStack {
