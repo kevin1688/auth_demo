@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		661279E62949A100002EB0EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661279E52949A100002EB0EB /* AppDelegate.swift */; };
+		661B1848299289F80092DEDD /* IndexDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B1847299289F80092DEDD /* IndexDemo.swift */; };
 		66235428292CF7AC00DE1609 /* NewStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66235427292CF7AC00DE1609 /* NewStudent.swift */; };
 		6641AB9E295C1622002C7C97 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6641AB9D295C1622002C7C97 /* FirebaseAuth */; };
 		6641ABA0295C1622002C7C97 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6641AB9F295C1622002C7C97 /* FirebaseAuthCombine-Community */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		661279E52949A100002EB0EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		661B1847299289F80092DEDD /* IndexDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDemo.swift; sourceTree = "<group>"; };
 		66235427292CF7AC00DE1609 /* NewStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStudent.swift; sourceTree = "<group>"; };
 		6641ABAD295C3806002C7C97 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		6641ABAF295C3831002C7C97 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				66C4B2132911597200E3E342 /* Assets.xcassets */,
 				66C4B2152911597200E3E342 /* Preview Content */,
 				6654DE552923BA990000797B /* Student.swift */,
+				661B1847299289F80092DEDD /* IndexDemo.swift */,
 				6654DE572923BB670000797B /* StudentManager.swift */,
 				66235427292CF7AC00DE1609 /* NewStudent.swift */,
 				661279E52949A100002EB0EB /* AppDelegate.swift */,
@@ -213,6 +216,7 @@
 				66C4B2102911597000E3E342 /* auth_demoApp.swift in Sources */,
 				6641ABB4295C38B8002C7C97 /* EnvironmentValues+ImageCache.swift in Sources */,
 				66235428292CF7AC00DE1609 /* NewStudent.swift in Sources */,
+				661B1848299289F80092DEDD /* IndexDemo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
