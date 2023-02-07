@@ -24,6 +24,7 @@ extension UIImage {
 class StudentManager: ObservableObject {
     @Published var students:[Student] = []
     @Published var myPics:[String] = []
+    @Published var name = ""
     
     let storage = Storage.storage()
     
@@ -97,7 +98,7 @@ class StudentManager: ObservableObject {
     func fetechStudents(){ //Read
         
         students.removeAll()
-        
+        print("fetechStudents")
         let db = Firestore.firestore()
         let ref = db.collection("Student")
         
@@ -124,6 +125,10 @@ class StudentManager: ObservableObject {
                 }
             }
         }
+    }
+    
+    func setName(index:Int){
+        name = students[index].name
     }
     
     func addStudent(name:String){ //Create

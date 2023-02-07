@@ -31,11 +31,10 @@ struct ContentView: View {
     @State var showImg = false
     
     var body: some View {
-        
         if statusIsLogin {
             
             VStack {
-                HStack{
+                /*HStack{
                     TextField("輸入尋找名字", text: $searchName).onChange(of: searchName) { newValue in
                         if newValue != "" {
                             searchName = newValue
@@ -43,6 +42,7 @@ struct ContentView: View {
                                 studentManager.fetechStudents()
                             }
                     }
+                    
                     PhotosPicker(selection: $selectedItem, matching: .images) {
                         Label("選擇相片", systemImage: "photo")
                     }.onChange(of: selectedItem) { newValue in
@@ -56,8 +56,8 @@ struct ContentView: View {
                         
                     }
 
-                }.padding(.horizontal, 20)
-                
+                }.padding(.horizontal, 20)*/
+                /*
                 if var selectedPhotoData,
                    let image = UIImage(data: selectedPhotoData){
                     if showImg {
@@ -75,7 +75,7 @@ struct ContentView: View {
 
                         }
                     }
-                }
+                }*//*
                 NavigationView {
                     List{
                         ForEach(studentManager.myPics,id:\.self){ pic in
@@ -95,9 +95,11 @@ struct ContentView: View {
                     }
                 }.onAppear{
                     studentManager.listAllFiles()
+                }*/
+                Text("\(studentManager.name)")
+                Text("下一筆").onTapGesture {
+                    studentManager.setName(index: 1)
                 }
-                Text("\(studentManager.myPics.count)")
-                /*
                 NavigationView{
                     List{
                         ForEach(studentManager.students){ std in
@@ -134,7 +136,7 @@ struct ContentView: View {
                         NewStudent(showPopup: $showPopup)
                     }
                 }
-                */
+                
             }
         }else{
             VStack {
